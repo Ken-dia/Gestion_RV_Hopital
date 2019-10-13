@@ -11,7 +11,7 @@ try
         {
             require('vue/backend/viewAddSecretaire.php');
         }
-        elseif($_GET['action'] == 'addSecretaire')
+        elseif($_GET['action'] == 'addSecretaire' || $_GET['action']== 'updateSecretaire')
         {
         
             $secretaire = new Secretaire([
@@ -22,9 +22,15 @@ try
                 'pass_secretaire'=> $_POST['pass']
     
             ]);
-            addSecretaire($secretaire);
-            
-           //echo 'Secretaire a ajouté est :id_secretaire:'.$secretaire->id_secretaire().', nom :'.$secretaire->nom().', prenom :'.$secretaire->prenom().', email:'.$secretaire->email().', numero de telephone:'.$secretaire->num_telephone().',mot de passe :'.$secretaire->pass_secretaire();
+            if($_GET['action'] == 'addSecretaire')
+            {
+                addSecretaire($secretaire);
+            }
+            else
+            {
+                $secretaire->setId_secretaire($_POST['id']);
+                updateSecretire($secretaire);
+            }
             
         }
         elseif($_GET['action'] == 'listesSecretaire')
@@ -35,30 +41,17 @@ try
     
         }
         
-        elseif($_GET['action']== 'deleteSecretaire' && isset($_GET['id']))
+        elseif(($_GET['action']== 'deleteSecretaire' || $_GET['action']== 'SecretaireUpdate') && isset($_GET['id']))
         {
-            $id = (int) $_GET['id'];
-            deleteSecretaire($id);
-    
-        }
-        elseif($_GET['action']== 'SecretaireUpdate' && isset($_GET['id']))
-        {
-            listeSecretaire((int) $_GET['id']);
-    
-        }
-        elseif($_GET['action']== 'updateSecretaire')
-        {
-            $secretaire = new Secretaire([
-                'nom'=>$_POST['nom'],
-                'prenom'=>$_POST['prenom'],
-                'num_telephone'=> $_POST['tel'],
-                'email'=> $_POST['email'],
-                'pass_secretaire'=> $_POST['pass'],
-                'id_secretaire' => $_POST['id']
-    
-            ]);
-            updateSecretire($secretaire);
-    
+            if($_GET['action']== 'deleteSecretaire')
+            {
+                $id = (int) $_GET['id'];
+                deleteSecretaire($id);
+            }
+            else
+            {
+                listeSecretaire((int) $_GET['id']);
+            }
         }
         elseif($_GET['action'] == 'searchSecretaire' && isset($_POST['mot']))
         {
@@ -71,7 +64,7 @@ try
         {
             require('vue/backend/viewAddPatient.php');
         }
-        elseif($_GET['action'] == 'addPatient')
+        elseif($_GET['action'] == 'addPatient' || $_GET['action'] == 'updatePatient')
         {
             $patient = new Patient([
                 'nom'=>$_POST['nom'],
@@ -80,7 +73,17 @@ try
                 'num_telephone'=> $_POST['tel'],
                 'email'=> $_POST['email'],
             ]);
-            addPatient($patient);
+
+            if($_GET['action'] == 'updatePatient')
+            {
+                $patient->setId_patient($_POST['id_patient']);
+                updatePatient($patient);
+            }
+            else
+            {
+                addPatient($patient);
+            }
+            
         }
         elseif($_GET['action'] == 'listesPatient')
         {
@@ -88,41 +91,38 @@ try
             
     
         }
-        elseif($_GET['action']== 'deletePatient' && isset($_GET['id']))
+        elseif(($_GET['action']== 'deletePatient' || $_GET['action']== 'patientUpdate') && isset($_GET['id']))
         {
-            deletePatient($_GET['id']);
-    
-        }
-    
-        elseif($_GET['action']== 'patientUpdate' && isset($_GET['id']))
-        {
-            listePatient($_GET['id']);
-    
-        }
-        elseif($_GET['action'] == 'updatePatient' && isset($_GET['id']))
-        {
-            $patient = new Patient([
-                'nom'=>$_POST['nom'],
-                'prenom'=>$_POST['prenom'],
-                'dateNaiss'=>$_POST['dateNaiss'],
-                'num_telephone'=> $_POST['tel'],
-                'email'=> $_POST['email'],
-                'id_patient'=> $_POST['id_patient'],
-            ]);
-            updatePatient($patient);
+            if($_GET['action']== 'deletePatient')
+            {
+                deletePatient($_GET['id']);
+            }
+            else
+            {
+                listePatient($_GET['id']);
+            }
         }
         elseif($_GET['action'] == 'findPatient' && isset($_POST['mot']))
         {
             findPatient($_POST['mot']);
         }
         //SERVICE
-        elseif($_GET['action'] == 'addService')
+        elseif($_GET['action'] == 'addService' || $_GET['action'] == 'updateService')
         {
             $service = new Service([
                 'nom_service'=> $_POST['specialite'],
                 'id_secretaire'=> (int)$_POST['secretaire']
             ]);
-            addService($service);
+            if($_GET['action'] == 'addService')
+            {
+                addService($service);
+            }
+            else
+            {
+                $service->setId_service((int)$_POST['id_specialite']);
+                updateService($service);
+            }
+           
         }
         elseif($_GET['action'] == 'ajoutService')
         {
@@ -133,22 +133,16 @@ try
             $listesService = listesService($index = 1);
         }
     
-        elseif($_GET['action'] == 'deleteService' && isset($_GET['id']))
+        elseif(($_GET['action'] == 'deleteService' || $_GET['action'] == 'serviceUpdate') && isset($_GET['id']))
         {
-            deleteService($_GET['id']);
-        }
-        elseif($_GET['action'] == 'serviceUpdate' && isset($_GET['id']))
-        {
-            listeService((int)$_GET['id']);
-        }
-        elseif($_GET['action'] == 'updateService')
-        {
-            $service = new Service([
-                'nom_service'=> $_POST['specialite'],
-                'id_secretaire'=> (int)$_POST['secretaire'],
-                'id_service'=> (int)$_POST['id_specialite']
-            ]);
-            updateService($service);
+            if($_GET['action'] == 'deleteService')
+            {
+                deleteService($_GET['id']);
+            }
+            else
+            {
+                listeService((int)$_GET['id']);
+            }
         }
         elseif($_GET['action'] == 'findService' && isset($_POST['mot']))
         {
@@ -159,7 +153,7 @@ try
         {
             listesService($index = 2);
         }
-        elseif($_GET['action'] == 'addMedecin')
+        elseif($_GET['action'] == 'addMedecin' || $_GET['action'] == 'updateMedecin')
         {
             $medecin = new Medecin([
                 'nom'=>$_POST['nom'],
@@ -169,51 +163,36 @@ try
                 'id_service'=>(int)$_POST['service'],
     
             ]);
-            addMedecin($medecin);
+            if($_GET['action'] == 'updateMedecin')
+            {
+                $medecin->setId_medecin((int)$_POST['id_medecin']);
+                updateMedecin($medecin);
+
+            }
+            else
+            {
+                addMedecin($medecin);
+            }
         }
         elseif($_GET['action'] == 'listesMedecin')
         {
             listesMedecin($index = 1);
             
         }
-        elseif($_GET['action'] == 'deleteMedecin' && isset($_GET['id']))
+        elseif(($_GET['action'] == 'deleteMedecin' || $_GET['action'] == 'medecinUpdate') && isset($_GET['id']))
         {
-            deleteMedecin($_GET['id']);
-        }
-        elseif($_GET['action'] == 'medecinUpdate' && isset($_GET['id']))
-        {
-            listeMedecin($_GET['id']);
-        }
-        elseif($_GET['action'] == 'updateMedecin')
-        {
-            $medecin = new Medecin([
-                'nom'=>$_POST['nom'],
-                'prenom'=>$_POST['prenom'],
-                'num_telephone'=>$_POST['tel'],
-                'email'=>$_POST['email'],
-                'id_service'=>(int)$_POST['service'],
-                'id_medecin'=>(int)$_POST['id_medecin']
-            ]);
-            updateMedecin($medecin);
+            if($_GET['action'] == 'medecinUpdate')
+            {
+                listeMedecin($_GET['id']);
+            }
+            else
+            {
+                deleteMedecin($_GET['id']);
+            }
         }
         elseif($_GET['action'] == 'findMedecin' && isset($_POST['mot']))
         {
             findPlanningMedecin($_POST['mot'],$index = 1);
-            
-            /*if(isset($_POST['rechercher']))
-            {
-                findMedecin($_POST['mot']);
-    
-            }
-            elseif(isset($_POST['planning']))
-            {
-                
-            }
-            else
-            {
-                header('location : page404.php');
-            }
-            */
         }
         //RENDEZ-VOUS
         elseif($_GET['action'] == 'ajoutRV')
@@ -227,7 +206,7 @@ try
         {
             listesRV();
         }
-        elseif($_GET['action'] == 'addRV' && isset($_POST['submit']))
+        elseif(($_GET['action'] == 'addRV' || $_GET['action'] == 'updateRV'))
         {
             $resultat = heureMedecinValide((int)$_POST['medecin'],$_POST['date_RV'],$_POST['heure_RV']);
             if((int) $resultat[0]["count(heure_RV)"] == 1)
@@ -237,7 +216,6 @@ try
             }
             else
             {
-                
                 $RV = new RendezVous([
                     'date_RV'=>$_POST['date_RV'],
                     'heure_RV'=>$_POST['heure_RV'],
@@ -245,39 +223,31 @@ try
                     'id_medecin'=>(int)$_POST['medecin'],
                     'id_secretaire'=>(int)$_POST['secretaire']
                 ]);
-                addRV($RV);
+
+                if($_GET['action'] == 'addRV')
+                {
+                    addRV($RV);
+                }
+                else
+                {
+                    $RV->setId_RV((int)$_POST['id_RV']);
+                    updateRV($RV);
+                }
+                
             }
                     
         }
-        elseif($_GET['action'] == 'deleteRV' && isset($_GET['id']))
+        elseif(($_GET['action'] == 'deleteRV' || $_GET['action'] == 'RVUpdate') && isset($_GET['id']))
         {
-            deleteRV($_GET['id']);
-        }
-        elseif($_GET['action'] == 'RVUpdate' && isset($_GET['id']))
-        {
-           listeRV((int)$_GET['id']);
-    
-        }
-        elseif($_GET['action'] == 'updateRV')
-        {
-            $resultat = heureMedecinValide((int)$_POST['medecin'],$_POST['date_RV'],$_POST['heure_RV']);
-            if((int) $resultat[0]["count(heure_RV)"] == 1)
+            if($_GET['action'] == 'deleteRV')
             {
-                $messageError = 'Desolé le Medecin n\'est pas disponible à cette heure';
-                header('location:index.php?action=RVUpdate&messageError='.$messageError);
+                deleteRV($_GET['id']);
             }
             else
             {
-                $RV = new RendezVous([
-                    'date_RV'=>$_POST['date_RV'],
-                    'heure_RV'=>$_POST['heure_RV'],
-                    'id_patient'=> (int)$_POST['patient'],
-                    'id_medecin'=>(int)$_POST['medecin'],
-                    'id_secretaire'=>(int)$_POST['secretaire'],
-                    'id_RV'=>(int)$_POST['id_RV']
-                ]);
-                updateRV($RV);
+                listeRV((int)$_GET['id']);
             }
+            
         }
         elseif($_GET['action'] == 'findRV')
         {
@@ -345,14 +315,18 @@ try
         {
             listesUser();
         } 
-        elseif($_GET['action']== 'deleteUser' && isset($_GET['id_user']))
+        elseif(($_GET['action'] == 'userUpdate' || $_GET['action']== 'deleteUser') && isset($_GET['id_user']))
         {
-            deleteUser($_GET['id_user']);
+            if($_GET['action'] == 'deleteUser')
+            {
+                deleteUser($_GET['id_user']);
+            }
+            else
+            {
+                listeUser((int)$_GET['id_user']);
+            }
         }
-        elseif($_GET['action']== 'userUpdate' && isset($_GET['id_user']))
-        {
-            listeUser((int)$_GET['id_user']);
-        }
+        //Connexion de l'utilisateur
         elseif($_GET['action']== 'connexion')
         {
             
@@ -360,6 +334,7 @@ try
             //var_dump(password_verify($_POST['pass'],$resultat[1]));
             
         }
+        //Deconnexion
         elseif($_GET['action'] == 'deconnexion')
         {
             session_start();

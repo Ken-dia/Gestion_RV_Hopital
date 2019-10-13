@@ -6,8 +6,8 @@
         <link href="public/css/monStyle.css" rel="stylesheet" />
         <link href="public/fontawesome-free-5.9.0-web/css/all.min.css" rel="stylesheet"/>
         <link href="public/fontawesome-free-5.9.0-web/css/v4-shims.min.css" rel="stylesheet"/>
-        <link href="public/bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="public/bootstrap-4.3.1/js/bootstrap.min.js"></script> 
+        <link href="public/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="public/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="public/jquery/lib/jquery.js"></script>
         <script src="public/js/validationForm.js"></script>
     </head> 

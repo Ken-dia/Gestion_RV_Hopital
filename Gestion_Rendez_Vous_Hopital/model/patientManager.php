@@ -38,7 +38,7 @@ class PatientManager extends Patient
 
     public function liste($id)
     {
-        $requete = $this->_db->prepare("SELECT id_patient,nom,prenom,DATE_FORMAT(dateNaiss, '%d/%m/%Y') AS dateNaiss,num_telephone,email FROM patient WHERE id_patient = :id_patient");
+        $requete = $this->_db->prepare("SELECT id_patient,nom,prenom,dateNaiss,num_telephone,email FROM patient WHERE id_patient = :id_patient");
         $requete->bindValue(':id_patient', $id, PDO::PARAM_INT);
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
