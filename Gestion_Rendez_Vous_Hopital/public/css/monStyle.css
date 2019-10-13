@@ -1,0 +1,38 @@
+body{
+    background-color: #F1F1F1;
+}
+th{
+    background-color: #7451EB;
+    text-align: center;
+}
+label,h2
+{
+    font-weight: 700;
+}
+.bg-color
+{
+    background-color: #7451EB;
+    
+}
+li a
+{
+    color:whitesmoke;
+    font-weight: 700;
+}
+.moncard{
+    margin-bottom: 50px;
+}
+.monpanel
+{
+    background-color: #7451EB;
+}
+.deconnexion,.profil
+{
+    color:whitesmoke;
+    font-weight: 700;
+}
+img.logo
+{
+    height: 150px;
+    margin: 30px;
+}
