@@ -6,17 +6,6 @@ require_once('lib/roleSecretaire.php');
 <?php ob_start(); ?>
 <?php $profile= $_SESSION['profil']?>
 <div class="container col-md-6">
-    <?php
-    if (isset($_GET['messageError']))
-    {
-    ?>
-        <div class="alert alert-danger alert-dismissible fade show">
-        <button type="button" href="#" class="close" data-dismiss="alert">&times;</button>
-        <strong> <?= $_GET['messageError']?> </strong>
-        </div>
-    <?php
-    }
-    ?>
         <div class="card">
             <div class="card-header bg-color">Ajouter Rendez-vous </div>
             <div class="card-body">

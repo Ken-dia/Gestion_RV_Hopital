@@ -117,6 +117,7 @@ function updateMedecin(Medecin $medecin)
 }
 function deleteMedecin($id)
 {
+    //var_dump($_SESSION['profil']);die;
     $db = Manager::connectDb();
     $medecinManager = new MedecinManager($db);
     $affectedLines = $medecinManager->delete($id);
@@ -209,6 +210,8 @@ function listePatient($id)
 }
 function deletePatient($id)
 {
+    //session_start();
+    //require_once('lib/roleAdmin.php');
     $db = Manager::connectDb();
     $patientManager = new PatientManager($db);
     $affectedLine = $patientManager->delete($id);

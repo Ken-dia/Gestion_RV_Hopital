@@ -45,6 +45,7 @@ try
         {
             if($_GET['action']== 'deleteSecretaire')
             {
+                require_once('lib/roleAdmin.php');
                 $id = (int) $_GET['id'];
                 deleteSecretaire($id);
             }
@@ -95,6 +96,7 @@ try
         {
             if($_GET['action']== 'deletePatient')
             {
+                require_once('lib/roleAdmin.php');
                 deletePatient($_GET['id']);
             }
             else
@@ -137,6 +139,7 @@ try
         {
             if($_GET['action'] == 'deleteService')
             {
+                require_once('lib/roleAdmin.php');
                 deleteService($_GET['id']);
             }
             else
@@ -187,7 +190,15 @@ try
             }
             else
             {
-                deleteMedecin($_GET['id']);
+                //require_once('lib/roleAdmin.php');
+                if(!($_SESSION['profil']== 'Admin'))
+                {
+                    header("location:$_SERVER[HTTP_REFERER]");
+                }
+                else
+                {
+                    deleteMedecin($_GET['id']);
+                }
             }
         }
         elseif($_GET['action'] == 'findMedecin' && isset($_POST['mot']))
@@ -212,7 +223,7 @@ try
             if((int) $resultat[0]["count(heure_RV)"] == 1)
             {
                 $messageError = 'Desolé le Medecin n\'est pas disponible à cette heure';
-                header('location:index.php?action=ajoutRV&messageError='.$messageError);
+                header('location:index.php?action=listesRV&messageError='.$messageError);
             }
             else
             {
