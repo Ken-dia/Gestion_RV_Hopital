@@ -7,15 +7,7 @@ $(function(){
         ];
         
         valid = true;
-        if($('#date_RV').val() == "")
-        {
-            $('#date_RV').next('.error-message').fadeIn().text('Veuillez entrer la Date de RV').addClass('invalid-feedback');
-            valid = false;
-        }
-        else
-        {
-            $('#date_RV').next('error-message').fadeOut();
-        }
+       
         if($('#heure_RV').val() == "")
         {
             $('#heure_RV').next('.error-message').fadeIn().text('Veuillez entrer une heure de RV').addClass('invalid-feedback');
@@ -34,6 +26,38 @@ $(function(){
                 $('#heure_RV').next('error-message').fadeOut();
             }
         }
+        if($('#date_RV').val() == "")
+        {
+            $('#date_RV').next('.error-message').fadeIn().text('Veuillez entrer la Date de RV').addClass('invalid-feedback');
+            valid = false;
+        }
+
+        else
+        {
+            bol = dateValite($('#date_RV').val());
+            if(bol === false)
+            {
+               
+                $('#date_RV').next('.error-message').fadeIn().text('Veuillez entrer la Date de RV valide').addClass('invalid-feedback');
+                valid = false;
+            }
+            else
+            {
+                jour = jourValide($('#date_RV').val());
+                if(jour == 0 || jour == 6)
+                {
+                    $('#date_RV').next('.error-message').fadeIn().text('Veuillez choisir un jour de RV valide').addClass('invalid-feedback');
+                    valid = false;  
+                }
+                else
+                {
+                    $('#date_RV').next('error-message').fadeOut();
+                }
+               
+            }
+
+            
+        }
         
         return valid;
     });
@@ -41,7 +65,7 @@ $(function(){
     function dateValite(date_RV)
     {
         var bol = false;
-        var tabDate = date_RV.split("/");
+        var tabDate = date_RV.split("-");
         var fullDate = new Date();
         if(fullDate.getFullYear() <= Number(tabDate[0]))
         {
@@ -71,3 +95,22 @@ $(function(){
     
     
 });
+function jourValide(date_RV)
+{
+    var tabDate = date_RV.split("-");
+    mondate = new Date(tabDate[0],tabDate[1]-1,tabDate[2]);
+    jour = mondate.getDay();
+    return jour;
+
+}
+
+$monday= new Date(Number(tabDate[0]),Number(tabDate[1])-1,Number(tabDate[2]));
+jour = monday.getDay();
+if(jour != 0 || jour != 6)
+{
+    bol = true;
+}
+else
+{
+    bol =false;
+}

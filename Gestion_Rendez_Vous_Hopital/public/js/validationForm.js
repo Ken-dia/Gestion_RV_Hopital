@@ -113,24 +113,29 @@
         //Function permettant de verifier la validité de Date de RV par rapport à la date actuelle
         function dateValide(date_RV)
         {
+            bol =true;
             var tabDate = date_RV.split("-");
             var fullDate = new Date();
             if(fullDate.getFullYear() <= Number(tabDate[0]))
             {
-                if(fullDate.getMonth() <= Number(tabDate[1]))
+                if(fullDate.getMonth() === Number(tabDate[1])-1)
                 {
                     if(fullDate.getDate() <= Number(tabDate[2]))
                     {
-                        bol=true;
+                       bol = true;
                     }
                     else
                     {
                         bol=false; 
                     }
                 }
+                else if(fullDate.getMonth() < Number(tabDate[1])-1)
+                {
+                   bol = true;
+                }
                 else
                 {
-                    bol=false;
+                    bol = false;
                 }
                 
             }
@@ -139,6 +144,14 @@
                 bol=false;
             }
             return bol;
+        }
+        function jourValide(date_RV)
+        {
+            var tabDate = date_RV.split("-");
+            mondate = new Date(tabDate[0],tabDate[1]-1,tabDate[2]);
+            jour = mondate.getDay();
+            return jour;
+
         }
         //DATE RV
         if($('#date_RV').val() == "")
@@ -156,7 +169,16 @@
             }
             else
             {
-                $('#date_RV').next('error-message').fadeOut();
+                jour = jourValide($('#date_RV').val());
+                if(jour == 0 || jour == 6)
+                {
+                    $('#date_RV').next('.error-message').fadeIn().text('Veuillez choisir un jour de RV valide').addClass('invalid-feedback');
+                    resultat = false;  
+                }
+                else
+                {
+                    $('#date_RV').next('error-message').fadeOut();
+                }
             }
         }
         if($('#heure_RV').val() == "")
