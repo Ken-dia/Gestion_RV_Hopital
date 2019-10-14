@@ -11,14 +11,10 @@ class SecrecretaireManager extends Secretaire
         $requete = $this->_db->prepare('INSERT INTO secretaire (nom, prenom, num_telephone, email)
         VALUES(:nom,:prenom,:num_telephone,:email)');
         $requete->bindValue(':nom',$secretaire->nom());
-        $requete->bindParam(':prenom',$secretaire->prenom());
-        $requete->bindParam(':num_telephone',$secretaire->num_telephone());
-        $requete->bindParam(':email',$secretaire->email());
+        $requete->bindValue(':prenom',$secretaire->prenom());
+        $requete->bindValue(':num_telephone',$secretaire->num_telephone());
+        $requete->bindValue(':email',$secretaire->email());
         return $requete->execute();
-        
-        $secretaire->hydrate([
-            'id_secretaire' => $this->_db->lastInsertId()
-        ]);
     }
     public function delete($id)
     {

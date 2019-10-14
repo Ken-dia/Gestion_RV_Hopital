@@ -42,10 +42,10 @@ function afficherTableSecretaire(array $listesSecretaire)
 
     }    
 }
-function afficherTableMedecin(array $listesMedecin)
+function afficherTableMedecin(array $listeMedecin)
 {
   echo  '<th>Nom</th><th>Prenom</th><th>N° Telephone</th><th>Email</th><th>Nom Service</th><th colspan ="2">Actions</th>';
-    foreach($listesMedecin as $medecin)
+    foreach($listeMedecin as $medecin)
     {
         echo '<tr>';
         echo '<td>'.$medecin['nom_medecin'].'</td><td>'.$medecin['prenom'].'</td><td>'

@@ -114,3 +114,6 @@ else
 {
     bol =false;
 }
+//Nom utilisateur :id11224488_admin
+//Nom BD :id11224488_rv_hopital
+//Hôte de BD:localhost

@@ -12,12 +12,13 @@ require_once('lib/roleMedecin.php');
         <div class="card-body">
             <form class="form-inline" action="index.php?action=findMedecin" method="POST">
                 <div class="form-group">
-                    <input type="text" name="mot" placeholder="Recherche...." class="control-form mr-sm" >
-                    <button class="btn btn-primary mr-sm-2" type="submit" value="rechercher" >Recherche</button>  
-                   
+                    <input type="text" name="mot" placeholder="Recherche...." class="control-form mr-sm" id="mot">
+                    <div class="error-message"></div>
+                    <button class="btn btn-primary mr-sm-2 rechercher" type="submit" value="rechercher">Recherche</button>
+                    <div class="error-message"></div>  
                 </div>
                 <div class="form-group">
-                ou <button class="btn btn-primary mr-sm-5" type="submit" value="planning">Planning</button>
+                    <button class="btn btn-primary mr-sm-5 rechercher" type="submit" value="planning" name="planning">Planning</button>
                 </div>
                 <div class="form-group">
                     <a href="index.php?action=ajoutMedecin">Nouveau Medecin</a>
@@ -46,7 +47,7 @@ require_once('lib/roleMedecin.php');
                         {
                             afficherTableMedecin($findListeMedecin);
                         }
-                        if(isset($listesPlanning))
+                        else if(isset($listesPlanning))
                         {
                             afficherTablePlannig($listesPlanning);
                         }

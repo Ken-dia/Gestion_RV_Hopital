@@ -23,7 +23,7 @@
                 $('#prenom').next('.error-message').fadeIn().text('Veuillez entrer votre prenom').addClass('invalid-feedback');
                 valid = false;
             }
-            else if(!$('#prenom').val().match(/^[a-z]+$/i))
+            else if(!$('#prenom').val().match(/^[a-z].+/i))
             {
                 $('#prenom').next('.error-message').fadeIn().text('Veuillez entrer un prenom valide').addClass('invalid-feedback');
                 valid = false;
@@ -265,9 +265,24 @@
         return resultat;
 
     });
-    /*
-    $(".close").click(function(){
-        $("#myAlert").alert('close');
-      });
-      */
+
+    $('.rechercher').click(function()
+    {
+        valeur =true;
+        if($('#mot').val() == "")
+        {
+            $('#mot').next('.error-message').fadeIn().text('Veuillez entrer votre mot').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else if(!$('#mot').val().match(/^[a-z]+$/i))
+        {
+            $('#mot').next('.error-message').fadeIn().text('Veuillez entrer un mot valide').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else
+        {
+                $('#mot').next('.error-message').fadeOut();
+        }
+        return valeur;
+    });
 });

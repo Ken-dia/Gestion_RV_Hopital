@@ -19,7 +19,6 @@ try
                 'prenom'=>$_POST['prenom'],
                 'num_telephone'=> $_POST['tel'],
                 'email'=> $_POST['email'],
-                'pass_secretaire'=> $_POST['pass']
     
             ]);
             if($_GET['action'] == 'addSecretaire')
@@ -203,7 +202,15 @@ try
         }
         elseif($_GET['action'] == 'findMedecin' && isset($_POST['mot']))
         {
-            findPlanningMedecin($_POST['mot'],$index = 1);
+            if(isset($_POST['planning']))
+            {
+                findPlanningMedecin($_POST['mot'],$index = 1);
+            }
+            else
+            {
+                findMedecin($_POST['mot']);
+            }
+            
         }
         //RENDEZ-VOUS
         elseif($_GET['action'] == 'ajoutRV')
