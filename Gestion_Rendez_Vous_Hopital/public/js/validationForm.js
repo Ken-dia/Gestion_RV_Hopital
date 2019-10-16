@@ -86,7 +86,7 @@
             {
                 $('#date_RV').next('error-message').fadeOut();
             }
-            */
+            
             if($('#heure_RV').val() == "")
             {
                 $('#heure_RV').next('.error-message').fadeIn().text('Veuillez entrer une heure de RV').addClass('invalid-feedback');
@@ -116,7 +116,7 @@
             bol =true;
             var tabDate = date_RV.split("-");
             var fullDate = new Date();
-            if(fullDate.getFullYear() <= Number(tabDate[0]))
+            if(fullDate.getFullYear() == Number(tabDate[0]))
             {
                 if(fullDate.getMonth() === Number(tabDate[1])-1)
                 {
@@ -138,6 +138,11 @@
                     bol = false;
                 }
                 
+            }
+            else if(fullDate.getFullYear() < Number(tabDate[0]))
+            {
+                bol = true;
+
             }
             else
             {

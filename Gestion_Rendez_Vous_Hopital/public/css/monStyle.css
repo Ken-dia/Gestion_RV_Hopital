@@ -33,6 +33,38 @@ li a
 }
 img.logo
 {
-    height: 150px;
-    margin: 30px;
+    height: 130px;
+    margin:15px 0 15px 0;
+}
+.inputSearch
+{
+    width: 150px;
+}
+button.rechercher
+{
+    background-color: #7451EB;
+    color: #FFFFFF;
+    font-size: 1.0em;
+    border-radius: 10px;
+    height: 35px;
+    font-weight: 700;
+    margin: 5px;
+}
+.lienAdd
+{
+    border:1px solid #7451EB;
+    color:#7451EB;
+    padding: 5px;
+    border-radius: 10px/10px;
+    margin: 5px;
+}
+span a
+{
+    color: #7451EB;
+}
+.imgAvatar
+{
+	width: 150px;
+	height: 150px;
+	margin: 10px 0 10px 0;
 }

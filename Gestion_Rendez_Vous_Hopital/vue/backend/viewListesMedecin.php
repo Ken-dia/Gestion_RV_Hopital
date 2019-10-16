@@ -10,18 +10,20 @@ require_once('lib/roleMedecin.php');
     <div class="card moncard">
         <div class="card-header">Recherche ...</div>
         <div class="card-body">
-            <form class="form-inline" action="index.php?action=findMedecin" method="POST">
+            <form class="form-inline" action="index.php?action=findMedecin" method="POST" id="formulaire">
                 <div class="form-group">
-                    <input type="text" name="mot" placeholder="Recherche...." class="control-form mr-sm" id="mot">
-                    <div class="error-message"></div>
-                    <button class="btn btn-primary mr-sm-2 rechercher" type="submit" value="rechercher">Recherche</button>
+                    <input type="text" name="mot" placeholder="Recherche...." class="control-form mr-sm inputSearch" id="mot">
+                    <button class="btn mr-sm-2 rechercher" type="submit" value="rechercher">Recherche</button>
                     <div class="error-message"></div>  
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary mr-sm-5 rechercher" type="submit" value="planning" name="planning">Planning</button>
                 </div>
                 <div class="form-group">
+                <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
                     <a href="index.php?action=ajoutMedecin">Nouveau Medecin</a>
+                </span>
+                    
                 </div>
             </form>
         </div>

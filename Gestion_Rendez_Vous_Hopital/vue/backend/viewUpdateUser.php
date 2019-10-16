@@ -21,7 +21,7 @@ require_once('lib/roleAdmin.php');
                     </div>
                     <div class="form-group">
                         <label for="pass">Mot de passe</label>
-                        <input type="text" placeholder="Entrer votre mot de passe" name="pass" class="form-control" id="pass" value="<?= crypt($user['password_user'])?>"/>
+                        <input type="text" placeholder="Entrer votre mot de passe" name="pass" class="form-control" id="pass" value=""/>
                         <div class="error-message"></div>
 
                     <?php

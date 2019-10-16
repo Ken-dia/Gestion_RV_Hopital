@@ -12,22 +12,24 @@ require_once('lib/roleSecretaire.php');
             <div class="card-body">
                 <form class="form-inline" action="index.php?action=findRV" method="POST">
                 <div class="form-group">
-                    <input type="date" name="date_RV" placeholder="Date RV" class="mr-sm-1">
-                    
+                    <input type="date" name="date_RV" placeholder="Date RV" class="form-control inputSearch">
                 </div>
                 <div class="form-group">
-                    <?php //<input type="text" name="mot" placeholder="Nom ou Prenom medecin" >?>
-                    <button class="btn btn-primary mr-sm-5" type="submit" name="rechercher" >Recherche</button>
+                    <button class="btn btn-primary mr-sm-3 rechercher" type="submit" name="rechercher" >Recherche</button>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="mot" placeholder="Nom ou Prenom medecin" >
-                    <button class="btn btn-primary mr-sm-5" type="submit" name="planning" >planning</button>
+                    <input type="text" name="mot" placeholder="Nom ou Prenom medecin" class="form-fontrol inputSearch" >
+                    <button class="btn btn-primary mr-sm-3 rechercher" type="submit" name="planning" >planning</button>
                 </div>
                 <div class="form-group">
-                    <a href="index.php?action=ajoutRV" class="mr-sm-3">Nouveau RV</a>
+                    <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                        <a href="index.php?action=ajoutRV" class="mr-sm-3">Nouveau RV</a>
+                    </span>
                 </div> 
                 <div class="form-group">
-                    <a href="index.php?action=ajoutPatient">Nouveau Patient</a>
+                <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                    <a href="index.php?action=ajoutPatient" class="mr-sm-3">Nouveau Patient</a>
+                </span>
                 </div>  
                 </form>
             </div>
@@ -36,8 +38,9 @@ require_once('lib/roleSecretaire.php');
         if (isset($_GET['message']))
         {
         ?>
-            <div class="alert alert-success">
-            <strong>Success! <?= $_GET['message']?></strong>
+            <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" href="#" class="close" data-dismiss="alert">&times;</button>
+            <strong>Success! <?= $_GET['message']?> </strong>
             </div>
         <?php
         }

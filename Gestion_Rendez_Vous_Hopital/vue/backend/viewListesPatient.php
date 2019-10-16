@@ -12,23 +12,27 @@ require_once('lib/roleAdmin.php');
         <div class="card-body">
             <form class="form-inline" action="index.php?action=findPatient" method="POST">
                 <div class="form-group">
-                    <input type="text" name="mot" placeholder="Entrer un text ..." >
-                    <button class="btn btn-primary mr-sm-5" type="submit">Recherche</button>
-                    <a href="index.php?action=ajoutPatient">Nouveau Patient</a>
+                    <input type="text" name="mot" placeholder="Entrer un text ..." class="inputSearch">
+                    <button class="btn btn-primary mr-sm-5 rechercher" type="submit">Recherche</button>
+                    <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                        <a href="index.php?action=ajoutPatient">Nouveau Patient</a>
+                    </span>
+                   
                 </div>
             </form>
         </div>
     </div>
-        <?php
-        if (isset($_GET['message']))
-        {
-        ?>
-            <div class="alert alert-success">
-            <strong>Success! <?= $_GET['message']?></strong>
-            </div>
-        <?php
-        }
-        ?>
+    <?php
+    if (isset($_GET['message']))
+    {
+    ?>
+        <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" href="#" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success! <?= $_GET['message']?> </strong>
+        </div>
+    <?php
+    }
+    ?>
         <div class="card">
             <div class="card-header">Liste Patient</div>
             <div class="card-body">

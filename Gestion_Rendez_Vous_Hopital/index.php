@@ -189,7 +189,7 @@ try
             }
             else
             {
-                //require_once('lib/roleAdmin.php');
+                session_start();
                 if(!($_SESSION['profil']== 'Admin'))
                 {
                     header("location:$_SERVER[HTTP_REFERER]");
@@ -313,7 +313,7 @@ try
         {
             $user = new User([
                 'profil'=> $_POST['login'],
-                'password_user'=> crypt($_POST['pass'])
+                'password_user'=> password_hash($_POST['pass'],PASSWORD_DEFAULT)
             ]);
             if($_GET['action'] == 'addUser')
             {
@@ -322,6 +322,7 @@ try
             elseif($_GET['action'] == 'updateUser')
             {
                 $user->setid_user((int)$_POST['id_user']);
+                //$user->setPassword_user(password_hash($_POST['pass'],PASSWORD_DEFAULT));
                 updateUser($user);
             }
             else
