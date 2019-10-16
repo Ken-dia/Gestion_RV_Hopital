@@ -12,11 +12,12 @@ require_once('lib/roleAdmin.php');
             <div class="card-body">
                 <form class="form-inline" action="index.php?action=findUser" method="POST">
                         <div class="form-group">
-                            <input type="text" name="mot" placeholder="Entrer un text ..." class="form-control inputSearch">
-                            <button class="btn btn-primary mr-sm-5 rechercher" type="submit">Recherche</button>
-                            <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                            <input type="text" name="mot" placeholder="Entrer un text ." class="form-control inputSearch" id="mot">
+                            <div class="error-message"></div>
+                            <button class="btn btn-primary mr-sm-5 rechercher" type="submit" name="submit" id="rechercher">Recherche</button>
+                            <div class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
                                 <a href="index.php?action=ajoutUser">Nouveau Utilisateur</a>
-                            </span>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -38,13 +39,13 @@ require_once('lib/roleAdmin.php');
                 <section class="col-ms-8 table-responsive matable">
                     <table class="table table-bordered table-hover">
                         <?php
-                            if(!isset($findListeUser))
+                            if(!isset($listesFindUser))
                             {
                                 afficherTableUser($listesUser);
                             }
                             else
                             {
-                                afficherTableUser($findListeUser);
+                                afficherTableUser($listesFindUser);
 
                             }
                             

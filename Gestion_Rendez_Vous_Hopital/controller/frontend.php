@@ -86,6 +86,13 @@ function connexionVerify($login,$pass)
         $message = 'login ou mot de passe incorrecte';
         header('location: index.php?message='.$message);
     }
-    
+}
+//RECHERCHER Un USER
+function findUser($chaine)
+{
+    $db = Manager::connectDb();
+    $userManager = new UserManager($db);
+    $listesFindUser = $userManager->findUser($chaine);
+    require('vue/backend/viewListesUser.php');   
 }
 ?>

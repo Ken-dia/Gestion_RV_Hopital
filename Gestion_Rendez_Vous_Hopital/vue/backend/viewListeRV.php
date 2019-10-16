@@ -12,24 +12,26 @@ require_once('lib/roleSecretaire.php');
             <div class="card-body">
                 <form class="form-inline" action="index.php?action=findRV" method="POST">
                 <div class="form-group">
-                    <input type="date" name="date_RV" placeholder="Date RV" class="form-control inputSearch">
+                    <input type="date" name="date_RV" placeholder="Date RV" class="form-control inputSearch" id="mot">
+                    <div class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary mr-sm-3 rechercher" type="submit" name="rechercher" >Recherche</button>
+                    <button class="btn btn-primary mr-sm-3 rechercher" type="submit" name="rechercher" id="rechercheRV" >Recherche</button>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="mot" placeholder="Nom ou Prenom medecin" class="form-fontrol inputSearch" >
-                    <button class="btn btn-primary mr-sm-3 rechercher" type="submit" name="planning" >planning</button>
+                    <input type="text" name="mot" placeholder="Nom medecin" class="form-fontrol inputSearch" id="motPlanning">
+                    <div class="error-message"></div>
+                    <button class="btn btn-primary mr-sm-3 rechercher" type="submit" name="planning" id="planningRV">planning</button>
                 </div>
                 <div class="form-group">
-                    <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                    <div class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
                         <a href="index.php?action=ajoutRV" class="mr-sm-3">Nouveau RV</a>
-                    </span>
+                    </div>
                 </div> 
                 <div class="form-group">
-                <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                <div class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
                     <a href="index.php?action=ajoutPatient" class="mr-sm-3">Nouveau Patient</a>
-                </span>
+                </div>
                 </div>  
                 </form>
             </div>

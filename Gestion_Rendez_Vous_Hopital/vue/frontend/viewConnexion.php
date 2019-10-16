@@ -8,7 +8,8 @@
         <link href="public/fontawesome-free-5.9.0-web/css/all.min.css" rel="stylesheet"/>
         <link href="public/fontawesome-free-5.9.0-web/css/v4-shims.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+        <script src="public/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="public/jquery/lib/jquery.js"></script>
     </head> 
     <body>
         <div class="row">
@@ -19,6 +20,17 @@
                         </div>
                     </div>
                         <div class="container">
+                            <?php
+                                if (isset($_GET['message']))
+                                {
+                                ?>
+                                    <div class="alert alert-danger alert-dismissible fade show">
+                                    <button type="button" href="#" class="close" data-dismiss="alert">&times;</button>
+                                    <strong><?= $_GET['message']?> </strong>
+                                    </div>
+                                <?php
+                                }
+                            ?>
                             <form action="index.php?action=connexion" method="POST">
                                 <div class="form-group">
                                     <label for="login">Login</label>

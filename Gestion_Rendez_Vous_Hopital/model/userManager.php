@@ -42,6 +42,14 @@ class UserManager extends User
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function findUser($chaine)
+    {
+        $requete = $this->_db->prepare("SELECT id_user,profil,password_user FROM users
+        WHERE profil LIKE :chaine");
+        $requete->bindValue(':chaine', $chaine);
+        $requete->execute();
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function verifyConnexion($login)
     {
         $requete = $this->_db->prepare("SELECT profil,password_user FROM users

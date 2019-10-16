@@ -12,11 +12,12 @@ require_once('lib/roleAdmin.php');
         <div class="card-body">
             <form class="form-inline" action="index.php?action=findPatient" method="POST">
                 <div class="form-group">
-                    <input type="text" name="mot" placeholder="Entrer un text ..." class="inputSearch">
-                    <button class="btn btn-primary mr-sm-5 rechercher" type="submit">Recherche</button>
-                    <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
+                    <input type="text" name="mot" placeholder="Entrer un text ..." class="inputSearch" id="mot">
+                    <div class="error-message"></div>
+                    <button class="btn btn-primary mr-sm-5 rechercher" type="submit" id="recherche">Recherche</button>
+                    <div class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
                         <a href="index.php?action=ajoutPatient">Nouveau Patient</a>
-                    </span>
+                    </div>
                    
                 </div>
             </form>

@@ -13,16 +13,17 @@ require_once('lib/roleMedecin.php');
             <form class="form-inline" action="index.php?action=findMedecin" method="POST" id="formulaire">
                 <div class="form-group">
                     <input type="text" name="mot" placeholder="Recherche...." class="control-form mr-sm inputSearch" id="mot">
-                    <button class="btn mr-sm-2 rechercher" type="submit" value="rechercher">Recherche</button>
-                    <div class="error-message"></div>  
+                    <div class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary mr-sm-5 rechercher" type="submit" value="planning" name="planning">Planning</button>
+                    <button class="btn mr-sm-2 rechercher" type="submit" value="rechercher" id="recherche">Recherche</button>  
                 </div>
                 <div class="form-group">
-                <span class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
-                    <a href="index.php?action=ajoutMedecin">Nouveau Medecin</a>
-                </span>
+                    <button class="btn btn-primary mr-sm-5 rechercher" type="submit" name="planning" id="planning">Planning</button>
+                </div>
+                <div class="form-group">
+                <div class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i><a href="index.php?action=ajoutMedecin">Nouveau Medecin</a>
+                </div>
                     
                 </div>
             </form>

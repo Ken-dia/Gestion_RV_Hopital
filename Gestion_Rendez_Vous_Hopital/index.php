@@ -345,6 +345,10 @@ try
                 listeUser((int)$_GET['id_user']);
             }
         }
+        elseif($_GET['action']=='findUser')
+        {
+            findUser($_POST['mot']);
+        }
         //Connexion de l'utilisateur
         elseif($_GET['action']== 'connexion')
         {

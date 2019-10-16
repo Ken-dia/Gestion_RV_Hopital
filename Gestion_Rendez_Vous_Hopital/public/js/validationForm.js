@@ -76,29 +76,6 @@
             {
                 $('#dateNaiss').next('error-message').fadeOut();
             }
-            /*
-            if($('#date_RV').val() == "")
-            {
-                $('#date_RV').next('.error-message').fadeIn().text('Veuillez entrer la Date de RV').addClass('invalid-feedback');
-                valid = false;
-            }
-            else
-            {
-                $('#date_RV').next('error-message').fadeOut();
-            }
-            
-            if($('#heure_RV').val() == "")
-            {
-                $('#heure_RV').next('.error-message').fadeIn().text('Veuillez entrer une heure de RV').addClass('invalid-feedback');
-                valid = false;
-            }
-            else
-            {
-                $('#heure_RV').next('error-message').fadeOut();
-            }
-            /*
-          
-            */
         return valid;
         });
         
@@ -271,22 +248,70 @@
 
     });
 
-    $('.rechercher').click(function()
-    {
-        valeur =true;
-        if($('#mot').val() == "")
+    $('#recherche').click(function(){
+        valeur = true;
+        if ($('#mot').val() == "")
         {
-            $('#mot').next('.error-message').fadeIn().text('Veuillez entrer votre mot').addClass('invalid-feedback');
+            $('#mot').next('.error-message').fadeIn().text('Veuillez entrer un mot').addClass('invalid-feedback');
             valeur = false;
         }
-        else if(!$('#mot').val().match(/^[a-z]+$/i))
+        else if(!$('#mot').val().match(/^[a-z].+$/i))
         {
             $('#mot').next('.error-message').fadeIn().text('Veuillez entrer un mot valide').addClass('invalid-feedback');
             valeur = false;
         }
         else
         {
-                $('#mot').next('.error-message').fadeOut();
+            $('#mot').next('.error-message').fadeOut();
+        }
+        return valeur;
+    });
+    $('#planning').click(function(){
+        valeur = true;
+        if ($('#mot').val() == "")
+        {
+            $('#mot').next('.error-message').fadeIn().text('Veuillez entrer un mot').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else if(!$('#mot').val().match(/^[a-z].+$/i))
+        {
+            $('#mot').next('.error-message').fadeIn().text('Veuillez entrer un mot valide').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else
+        {
+            $('#mot').next('.error-message').fadeOut();
+        }
+        return valeur;
+    });
+    $('#planningRV').click(function(){
+        valeur = true;
+        if ($('#motPlanning').val() == "")
+        {
+            $('#motPlanning').next('.error-message').fadeIn().text('Veuillez entrer un mot').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else if(!$('#motPlanning').val().match(/^[a-z].+$/i))
+        {
+            $('#motPlanning').next('.error-message').fadeIn().text('Veuillez entrer un mot valide').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else
+        {
+            $('#motPlanning').next('.error-message').fadeOut();
+        }
+        return valeur;
+    });
+    $('#rechercheRV').click(function(){
+        valeur = true;
+        if ($('#mot').val() == "")
+        {
+            $('#mot').next('.error-message').fadeIn().text('Veuillez choisir une Date').addClass('invalid-feedback');
+            valeur = false;
+        }
+        else
+        {
+            $('#mot').next('.error-message').fadeOut();
         }
         return valeur;
     });

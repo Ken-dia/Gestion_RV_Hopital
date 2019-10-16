@@ -56,9 +56,9 @@ button.rechercher
     color:#7451EB;
     padding: 5px;
     border-radius: 10px/10px;
-    margin: 5px;
+    margin:5px;
 }
-span a
+div.lienAdd a
 {
     color: #7451EB;
 }
@@ -67,4 +67,8 @@ span a
 	width: 150px;
 	height: 150px;
 	margin: 10px 0 10px 0;
+}
+a:hover
+{
+    text-decoration: none;
 }

@@ -20,9 +20,10 @@ function addSecretaire(Secretaire $secretaire)
     $affectedLine = $secretaireManager->add($secretaire);
     if ($affectedLine === false) {
         throw new Exception('Impossible d\'enregistrer un(e) secretaire ');
-    } else {
+    } 
+    else {
         $message = 'Nouveau secretaire ajouté';
-        header('Location: index.php?action=listesSecretaire&message'.$message);
+        header('Location: index.php?action=listesSecretaire&message='.$message);
     }
 }
 function listeSecretaire($id)
@@ -65,9 +66,10 @@ function deleteSecretaire($id)
     $affectedLine = $secretaireManager->delete($id);
     if ($affectedLine === false) {
         throw new Exception('Impossible de supprimer un(e) secretaire(e) ');
-    } else {
+    } 
+    else {
         $message = 'Secretaire supprimé';
-        header('Location: index.php?action=listesSecretaire&message'.$message);
+        header('Location: index.php?action=listesSecretaire&message='.$message);
     }
 }
 function updateSecretire(Secretaire $secretaire)
@@ -77,9 +79,10 @@ function updateSecretire(Secretaire $secretaire)
     $affectedLine = $secretaireManager->update($secretaire);
     if ($affectedLine === false) {
         throw new Exception('Impossible de modifier un(e) secretaire ');
-    } else {
+    } 
+    else {
         $message = 'Secretaire modifié';
-        header('Location: index.php?action=listesSecretaire&message'.$message);
+        header('Location: index.php?action=listesSecretaire&message='.$message);
     }
 }
 function searchSecretaire($chaine)
