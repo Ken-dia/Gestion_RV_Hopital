@@ -35,7 +35,6 @@ try
         elseif($_GET['action'] == 'listesSecretaire')
         {
             listesSecretaire($index = 1);
-            //require('vue/backend/viewListesSecretaire.php');
             
     
         }
@@ -224,7 +223,7 @@ try
         {
             listesRV();
         }
-        elseif(($_GET['action'] == 'addRV' || $_GET['action'] == 'updateRV'))
+        elseif($_GET['action'] == 'addRV' || $_GET['action'] == 'updateRV')
         {
             $resultat = heureMedecinValide((int)$_POST['medecin'],$_POST['date_RV'],$_POST['heure_RV']);
             if((int) $resultat[0]["count(heure_RV)"] == 1)
@@ -322,7 +321,6 @@ try
             elseif($_GET['action'] == 'updateUser')
             {
                 $user->setid_user((int)$_POST['id_user']);
-                //$user->setPassword_user(password_hash($_POST['pass'],PASSWORD_DEFAULT));
                 updateUser($user);
             }
             else
@@ -354,7 +352,6 @@ try
         {
             
             $resultat = connexionVerify($_POST['login'],$_POST['pass']);
-            //var_dump(password_verify($_POST['pass'],$resultat[1]));
             
         }
         //Deconnexion

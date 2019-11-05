@@ -247,6 +247,36 @@
         return resultat;
 
     });
+    $('#connect').click(function()
+    {
+        resultat =true;
+        if($('#login').val() == "")
+        {
+            $('#login').next('.error-message').fadeIn().text('Veuillez entrer votre login').addClass('invalid-feedback');
+            resultat = false;
+        }
+        else if(!$('#login').val().match(/^[a-z].+$/i))
+        {
+            $('#login').next('.error-message').fadeIn().text('Veuillez entre un login valide').addClass('invalid-feedback');
+            resultat = false;
+        }
+        else
+        {
+            $('#login').next('.error-message').fadeOut();
+        }
+        if($('#pass').val() == "")
+        {
+            $('#pass').next('.error-message').fadeIn().text('Veuillez entrer votre mot de passe').addClass('invalid-feedback');
+            resultat = false;
+        }
+        else
+        {
+            $('#pass').next('.error-message').fadeOut();
+        }
+
+        return resultat;
+
+    });
 
     $('#recherche').click(function(){
         valeur = true;

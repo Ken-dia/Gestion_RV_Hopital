@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +42,7 @@
                                     <div class="error-message"></div>
                                 </div>
                                 <div class="form-group">
-                                    <button class ="btn btn-primary btn-block" type="submit" name="ok" id="connectr">Se connecter</button>
+                                    <button class ="btn btn-primary btn-block" type="submit" name="ok" id="connect">Se connecter</button>
                                 </div> 
                                 <div class="form-group">
                                 <a href="#demo" class="btn btn-primary btn-block" data-toggle="collapse">cliquez ici pour voir les utilisateurs pour le test</a>
