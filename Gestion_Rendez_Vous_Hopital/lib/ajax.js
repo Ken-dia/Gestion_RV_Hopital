@@ -63,7 +63,7 @@ var data = "tel_name=" + tel;
     mes_liens = document.getElementById("suggestion")
     mes_liens.addEventListener("click", function(e)
     {
-      
+        
         var my_classe = e.target.className
         if (my_classe === "lien")
         {
@@ -72,7 +72,7 @@ var data = "tel_name=" + tel;
                 document.getElementById("num_tel").value = e.target.innerHTML;
                 
                 document.getElementById("id_patient").value = e.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
-                mes_liens.style.visibility="hidden";
+                mes_liens.innerHTML="";
                 
             }
             else
