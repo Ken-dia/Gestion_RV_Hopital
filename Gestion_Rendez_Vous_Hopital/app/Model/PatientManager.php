@@ -1,4 +1,8 @@
 <?php
+namespace App\Model;
+use App\Tables\Patient;
+use \PDO;
+
 class PatientManager extends Patient
 {
     private $_db;
@@ -64,5 +68,13 @@ class PatientManager extends Patient
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function findTelPatient($tel_name)
+    {
+        $requete = $this->db->query("SELECT num_telephone,id_patient,prenom,nom FROM patient WHERE num_telephone LIKE '$tel_name%'");
+        $requete->execute();
+        $resultat = $requete->fetchAll();
+        return $resultat;
+    }
+
 }
 ?>

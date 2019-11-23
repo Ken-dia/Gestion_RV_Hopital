@@ -38,6 +38,9 @@
                             <a class="nav-link" href="index.php?action=listesServices">Services</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="index.php?action=listesSpecialite">Specialités</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="index.php?action=listesRV">Rendez-vous</a>
                         </li>
                         <li class="nav-item">

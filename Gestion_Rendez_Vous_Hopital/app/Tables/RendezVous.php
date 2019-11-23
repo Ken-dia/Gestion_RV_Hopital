@@ -1,4 +1,5 @@
 <?php
+namespace App\Tables;
 class RendezVous
 {
     private $_id_RV;

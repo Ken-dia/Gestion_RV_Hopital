@@ -2,7 +2,7 @@
 require_once('lib/security.php');
 require_once('lib/roleAdmin.php');
 ?>
-<?php $title='Liste Services'?>
+<?php $title='Liste Specialité'?>
 <?php ob_start(); ?>
 <?php $profile= $_SESSION['profil']?>
 <?php require('lib/fonctions.php')?>
@@ -10,13 +10,13 @@ require_once('lib/roleAdmin.php');
         <div class="card moncard">
             <div class="card-header">Recherche ...</div>
             <div class="card-body">
-                <form class="form-inline" action="index.php?action=findService" method="POST">
+                <form class="form-inline" action="index.php?action=findSpecialite" method="POST">
                         <div class="form-group">
                             <input type="text" name="mot" placeholder="Entrer un text ..." class="form-control inputSearch" id="mot">
                             <div class="error-message"></div>
                             <button class="btn btn-primary mr-sm-5 rechercher" type="submit" id="recherche">Recherche</button>
                             <div class="lienAdd"><i class="fa fa-plus" aria-hidden="true"></i>
-                                <a href="index.php?action=ajoutService">Nouveau Service</a>
+                                <a href="index.php?action=ajoutSpecialite">Nouveau Specialite</a>
                             </div>
                         </div>
                     </form>
@@ -33,24 +33,18 @@ require_once('lib/roleAdmin.php');
     <?php
     }
     ?>
+
         <div class="card">
-            <div class="card-header">Liste Services</div>
+            <div class="card-header">Liste Specialité</div>
             <div class="card-body">
                 <section class="col-ms-8 table-responsive matable">
                     <table class="table table-bordered table-hover">
-                            <th>Nom Service</th><th>Preom Secretaire</th><th>Nom Secretaire</th><th colspan ="2">Actions</th>
+                            <th>Nom Specialité</th><th>Nom Service</th><th colspan ="2">Actions</th>
                         <?php
-                            if(!isset($findListeService))
-                            {
-                                afficherTableServices($listesService);
+                            if (isset($listesSpecialite))
+                             {
+                                afficherTableSpecialite($listesSpecialite);
                             }
-                            else
-                            {
-                                afficherTableServices($findListeService);
-
-                            }
-                            
-
                         ?>
                     </table>
                 </section>

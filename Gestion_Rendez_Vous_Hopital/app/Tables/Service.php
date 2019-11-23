@@ -1,4 +1,5 @@
 <?php
+namespace App\Tables;
 class Service
 {
    private $_id_service;

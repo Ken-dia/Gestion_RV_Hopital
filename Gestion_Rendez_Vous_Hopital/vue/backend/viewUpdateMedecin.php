@@ -40,12 +40,12 @@ require_once('lib/roleAdmin.php');
                 ?>   
                 <div class="form-group">
                     <label for="service"> Nom Service</label>
-                    <select name="service" class="form-control custom-select-sm">
+                    <select name="specialite" class="form-control custom-select-sm">
                     <?php
-                        foreach($listesService as $service)
+                        foreach($listesSpecialite as $specialite)
                             {?>
-                                <option name="service" value="<?= $service['id_specialite']?>">
-                                    <?= $service['nom']?>
+                                <option name="specialite" value="<?= $specialite['id_domaine']?>">
+                                    <?= $specialite['nom_specialite']?>
                                 </option>
 
                             <?php

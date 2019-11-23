@@ -1,45 +1,34 @@
 <?php
-class Medecin
+namespace App\Tables;
+class Patient
 {
-    private $_id_medecin;
+    private $_id_patient;
     private $_nom;
     private $_prenom;
+    private $_dateNaiss;
     private $_num_telephone;
     private $_email;
-    private $_id_service;    
     public function __construct($valeurs = [])
     {
         if(!empty($valeurs))
         {
             $this->hydrate($valeurs);
         }
-        
     }
-//GETTERS
-    public function id_service(){ return $this->_id_service;}
-    public function id_Medecin(){ return $this->_id_medecin;}
+    
+    public function id_patient(){ return $this->_id_patient;}
     public function nom(){ return $this->_nom;}
     public function prenom(){ return $this->_prenom;}
+    public function dateNaiss(){ return $this->_dateNaiss;}
     public function num_telephone(){ return $this->_num_telephone;}
     public function email(){ return $this->_email;}
 
-
-    //SETTERS
-
-    public function setId_service($specialite)
-    {
-        $specialite = (int) $specialite;
-        if($specialite > 0)
-        {
-            $this->_id_service = $specialite;
-        }
-    }
-    public function setId_medecin($id)
+    public function setId_patient($id)
     {
         $id = (int)$id;
         if($id > 0)
         {
-            $this->_id_medecin = $id;
+            $this->_id_patient = $id;
         }
     }
 
@@ -71,18 +60,27 @@ class Medecin
             $this->_num_telephone = $numero_telephone;
         }
     }
-    
-//HYDRATATION DE L'OBJET
+    public function setDateNaiss($dateNaiss)
+    {
+        if(is_string($dateNaiss))
+        {
+            $this->_dateNaiss = $dateNaiss;
+        }
+    }
     public function hydrate(array $donnees)
     {
-        foreach($donnees as $cle=>$valeur)
+        foreach($donnees as $cle => $valeur)
         {
+            //on recupére le nom du setteur correspondant à l'attribut
             $method = 'set'.ucfirst($cle);
+            
+            //si le setteur correspondant existe 
             if(method_exists($this,$method))
             {
+                //on appelle le setteur
                 $this->$method($valeur);
             }
         }
     }
 }
-
+?>

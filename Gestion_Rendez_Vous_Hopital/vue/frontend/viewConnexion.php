@@ -4,9 +4,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Accueil</title>
         <link href="public/css/monStyle.css" rel="stylesheet" />
+        <link href="public/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="public/fontawesome-free-5.9.0-web/css/all.min.css" rel="stylesheet"/>
         <link href="public/fontawesome-free-5.9.0-web/css/v4-shims.min.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <?php 
+
+        //<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        ?>
         <script src="public/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="public/jquery/lib/jquery.js"></script>
     </head> 

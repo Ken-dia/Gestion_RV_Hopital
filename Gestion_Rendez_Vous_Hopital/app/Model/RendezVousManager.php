@@ -1,8 +1,12 @@
 <?php
+namespace App\Model;
+use App\Tables\RendezVous;
+use \PDO;
+
 class RendezVousManager extends RendezVous
 {
     private $_db;
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->_db = $db;
     }
@@ -25,8 +29,8 @@ class RendezVousManager extends RendezVous
         $requete->bindValue(':heure_RV',$RV->Heure_RV());
         $requete->bindValue(':id_patient',$RV->Id_Patient(),PDO::PARAM_INT);
         $requete->bindValue(':id_medecin',$RV->Id_Medecin(),PDO::PARAM_INT);
-        $requete->bindValue(':id_secretaire',$RV->Id_Secretaire(),PDO::PARAM_INT);
-        $requete->bindValue(':id_RV',$RV->Id_RV(),PDO::PARAM_INT);
+        $requete->bindValue(':id_secretaire',$RV->Id_Secretaire(),\PDO::PARAM_INT);
+        $requete->bindValue(':id_RV',$RV->Id_RV(),\PDO::PARAM_INT);
         return $requete->execute();
     }
     public function listes()
@@ -36,7 +40,7 @@ class RendezVousManager extends RendezVous
         FROM rendez_vous r,patient p,secretaire s,medecin m WHERE r.id_patient = p.id_patient AND r.id_medecin = m.id_medecin
         AND r.id_secretaire = s.id_secretaire");
         $requete->execute();
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $requete->fetchAll(\PDO::FETCH_ASSOC);
     }
     public function liste($id)
     {

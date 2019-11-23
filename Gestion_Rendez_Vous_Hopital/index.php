@@ -1,7 +1,24 @@
 <?php
-require_once('lib/autoload.php');
-require_once('controller/frontend.php');
-require_once('controller/backend.php');
+require 'vendor/autoload.php';
+use App\Tables\{
+    User,
+    Medecin,
+    Patient,
+    Service,
+    RendezVous,
+    Secretaire,
+    Specialite
+};
+use App\Controller\{
+    ControllerMedecin,
+    ControllerPatient,
+    ControllerService,
+    ControllerRV,
+    ControllerSecretaire,
+    ControllerSpecialite,
+    GererUser
+};
+
 try
 {
     if(isset($_GET['action']))
@@ -23,18 +40,18 @@ try
             ]);
             if($_GET['action'] == 'addSecretaire')
             {
-                addSecretaire($secretaire);
+                ControllerSecretaire::addSecretaire($secretaire);
             }
             else
             {
                 $secretaire->setId_secretaire($_POST['id']);
-                updateSecretire($secretaire);
+                ControllerSecretaire::updateSecretire($secretaire);
             }
             
         }
         elseif($_GET['action'] == 'listesSecretaire')
         {
-            listesSecretaire($index = 1);
+            ControllerSecretaire::listesSecretaire($index = 1);
             
     
         }
@@ -45,16 +62,16 @@ try
             {
                 require_once('lib/roleAdmin.php');
                 $id = (int) $_GET['id'];
-                deleteSecretaire($id);
+                ControllerSecretaire::deleteSecretaire($id);
             }
             else
             {
-                listeSecretaire((int) $_GET['id']);
+                ControllerSecretaire::listeSecretaire((int) $_GET['id']);
             }
         }
         elseif($_GET['action'] == 'searchSecretaire' && isset($_POST['mot']))
         {
-            searchSecretaire($_POST['mot']);
+            ControllerSecretaire::searchSecretaire($_POST['mot']);
         }
     
     
@@ -72,21 +89,20 @@ try
                 'num_telephone'=> $_POST['tel'],
                 'email'=> $_POST['email'],
             ]);
-
             if($_GET['action'] == 'updatePatient')
             {
                 $patient->setId_patient($_POST['id_patient']);
-                updatePatient($patient);
+                ControllerPatient::updatePatient($patient);
             }
             else
             {
-                addPatient($patient);
+                ControllerPatient::addPatient($patient);
             }
             
         }
         elseif($_GET['action'] == 'listesPatient')
         {
-            listesPatient($index = 1);
+            ControllerPatient::listesPatient($index = 1);
             
     
         }
@@ -95,16 +111,16 @@ try
             if($_GET['action']== 'deletePatient')
             {
                 require_once('lib/roleAdmin.php');
-                deletePatient($_GET['id']);
+                ControllerPatient::deletePatient($_GET['id']);
             }
             else
             {
-                listePatient($_GET['id']);
+                ControllerPatient::listePatient($_GET['id']);
             }
         }
         elseif($_GET['action'] == 'findPatient' && isset($_POST['mot']))
         {
-            findPatient($_POST['mot']);
+            ControllerPatient::findPatient($_POST['mot']);
         }
         //SERVICE
         elseif($_GET['action'] == 'addService' || $_GET['action'] == 'updateService')
@@ -115,44 +131,81 @@ try
             ]);
             if($_GET['action'] == 'addService')
             {
-                addService($service);
+                ControllerService::addService($service);
             }
             else
             {
                 $service->setId_service((int)$_POST['id_specialite']);
-                updateService($service);
+                ControllerService::updateService($service);
             }
            
         }
         elseif($_GET['action'] == 'ajoutService')
         {
-            listesSecretaire($index = 2);
+            ControllerSecretaire::listesSecretaire($index = 2);
         }
         elseif($_GET['action'] == 'listesServices')
         {
-            $listesService = listesService($index = 1);
+            $listesService = ControllerService::listesService($index = 1);
         }
     
         elseif(($_GET['action'] == 'deleteService' || $_GET['action'] == 'serviceUpdate') && isset($_GET['id']))
         {
             if($_GET['action'] == 'deleteService')
             {
-                require_once('lib/roleAdmin.php');
-                deleteService($_GET['id']);
+                //require_once('lib/roleAdmin.php');
+                ControllerService::deleteService($_GET['id']);
             }
             else
             {
-                listeService((int)$_GET['id']);
+                ControllerService::listeService((int)$_GET['id']);
             }
         }
         elseif($_GET['action'] == 'findService' && isset($_POST['mot']))
         {
-            findService($_POST['mot']);
+            ControllerService::findService($_POST['mot']);
+        }
+        //Specialite 
+        elseif($_GET['action'] === 'addSpecialite' || $_GET['action'] === 'updateSpecialite')
+        {
+            $specialite = new Specialite([
+                    'nom_specialite'=>$_POST['nom_specialite'],
+                    'id_service'=>(int)$_POST['service'],
+                ]
+                );
+                if($_GET['action'] === 'addSpecialite')
+                {
+                    ControllerSpecialite::addSpecialite($specialite);
+                }
+                else
+                {
+                    $specialite->setId_specialite((int)$_POST['id']);
+                    ControllerSpecialite::updateSpecialite($specialite);
+                }
+        }
+        elseif($_GET['action'] === 'deleteSpecialite' || $_GET['action'] === 'specialiteUpdate')
+        {
+            if($_GET['action'] === 'deleteSpecialite')
+            {
+             ControllerSpecialite::deleteSpecialite($_GET['id']);
+            }
+            else
+            {
+                ControllerSpecialite::listeSpecialite((int)$_GET['id']);
+            }
+        }
+        elseif($_GET['action'] === 'listesSpecialite')
+        {
+            ControllerSpecialite::listesSpecialite($index=1);
+        }
+        elseif($_GET['action'] === 'ajoutSpecialite')
+        {
+            ControllerService::listesService($index = 2);
         }
         //MEDECIN
-        elseif($_GET['action'] == 'ajoutMedecin')
+        elseif($_GET['action'] === 'ajoutMedecin')
         {
-            listesService($index = 2);
+            ControllerSpecialite::listesSpecialite($index = 2);
         }
         elseif($_GET['action'] == 'addMedecin' || $_GET['action'] == 'updateMedecin')
         {
@@ -161,30 +214,30 @@ try
                 'prenom'=>$_POST['prenom'],
                 'num_telephone'=>$_POST['tel'],
                 'email'=>$_POST['email'],
-                'id_service'=>(int)$_POST['service'],
+                'id_service'=>(int)$_POST['specialite'],
     
             ]);
             if($_GET['action'] == 'updateMedecin')
             {
                 $medecin->setId_medecin((int)$_POST['id_medecin']);
-                updateMedecin($medecin);
+                ControllerMedecin::updateMedecin($medecin);
 
             }
             else
             {
-                addMedecin($medecin);
+                ControllerMedecin::addMedecin($medecin);
             }
         }
         elseif($_GET['action'] == 'listesMedecin')
         {
-            listesMedecin($index = 1);
+            ControllerMedecin::listesMedecin($index = 1);
             
         }
         elseif(($_GET['action'] == 'deleteMedecin' || $_GET['action'] == 'medecinUpdate') && isset($_GET['id']))
         {
             if($_GET['action'] == 'medecinUpdate')
             {
-                listeMedecin($_GET['id']);
+                ControllerMedecin::listeMedecin($_GET['id']);
             }
             else
             {
@@ -195,7 +248,7 @@ try
                 }
                 else
                 {
-                    deleteMedecin($_GET['id']);
+                    ControllerMedecin::deleteMedecin($_GET['id']);
                 }
             }
         }
@@ -203,29 +256,29 @@ try
         {
             if(isset($_POST['planning']))
             {
-                findPlanningMedecin($_POST['mot'],$index = 1);
+                ControllerMedecin::findPlanningMedecin($_POST['mot'],$index = 1);
             }
             else
             {
-                findMedecin($_POST['mot']);
+                ControllerMedecin::findMedecin($_POST['mot']);
             }
             
         }
         //RENDEZ-VOUS
         elseif($_GET['action'] == 'ajoutRV')
         {
-            $listesMedecin=listesMedecin($index = 2);
-            $listesPatient=listesPatient($index = 2);
-            $listesSecretaire=listesSecretaire($index = 4);
+            $listesMedecin=ControllerMedecin::listesMedecin($index = 2);
+            $listesPatient=ControllerPatient::listesPatient($index = 2);
+            $listesService=ControllerService::listesService($index = 3);
             require_once('vue/backend/viewAddRV.php');
         }
         elseif($_GET['action'] == 'listesRV')
         {
-            listesRV();
+            ControllerRV::listesRV();
         }
         elseif($_GET['action'] == 'addRV' || $_GET['action'] == 'updateRV')
         {
-            $resultat = heureMedecinValide((int)$_POST['medecin'],$_POST['date_RV'],$_POST['heure_RV']);
+            $resultat = ControllerRV::heureMedecinValide((int)$_POST['medecin'],$_POST['date_RV'],$_POST['heure_RV']);
             if((int) $resultat[0]["count(heure_RV)"] == 1)
             {
                 $messageError = 'Desolé le Medecin n\'est pas disponible à cette heure';
@@ -243,12 +296,12 @@ try
 
                 if($_GET['action'] == 'addRV')
                 {
-                    addRV($RV);
+                    ControllerRV::addRV($RV);
                 }
                 else
                 {
                     $RV->setId_RV((int)$_POST['id_RV']);
-                    updateRV($RV);
+                    ControllerRV::updateRV($RV);
                 }
                 
             }
@@ -258,11 +311,11 @@ try
         {
             if($_GET['action'] == 'deleteRV')
             {
-                deleteRV($_GET['id']);
+                ControllerRV::deleteRV($_GET['id']);
             }
             else
             {
-                listeRV((int)$_GET['id']);
+                ControllerRV::listeRV((int)$_GET['id']);
             }
             
         }
@@ -272,7 +325,7 @@ try
             {
                 if(!empty($_POST['date_RV']))
                 {
-                   findRV($_POST['date_RV']);
+                    ControllerRV::findRV($_POST['date_RV']);
                 }
                 else
                 {
@@ -286,11 +339,11 @@ try
                 
                 if(!empty($_POST['date_RV']) && !empty($_POST['mot']))
                 {
-                    findDatePlanningMedecin($_POST['mot'],$_POST['date_RV']);
+                    ControllerRV::findDatePlanningMedecin($_POST['mot'],$_POST['date_RV']);
                 }
                 elseif(!empty($_POST['mot']))
                 {
-                    findPlanningMedecin($_POST['mot'],$index = 2);
+                    ControllerRV::findPlanningMedecin($_POST['mot'],$index = 2);
                 }
                 else
                 {
@@ -303,7 +356,6 @@ try
                 header('location:page404.php');
             }
         }
-        //USERS
         elseif($_GET['action'] == 'ajoutUser')
         {
             require('vue/backend/viewAddUser.php');
@@ -316,12 +368,12 @@ try
             ]);
             if($_GET['action'] == 'addUser')
             {
-                addUser($user);
+               GererUser::addUser($user);
             }
             elseif($_GET['action'] == 'updateUser')
             {
                 $user->setid_user((int)$_POST['id_user']);
-                updateUser($user);
+                GererUser::updateUser($user);
             }
             else
             {
@@ -330,29 +382,29 @@ try
         }
         elseif($_GET['action']== 'listesUser')
         {
-            listesUser();
+            GererUser::listesUser();
         } 
         elseif(($_GET['action'] == 'userUpdate' || $_GET['action']== 'deleteUser') && isset($_GET['id_user']))
         {
             if($_GET['action'] == 'deleteUser')
             {
-                deleteUser($_GET['id_user']);
+                GererUser::deleteUser($_GET['id_user']);
             }
             else
             {
-                listeUser((int)$_GET['id_user']);
+                GererUser::listeUser((int)$_GET['id_user']);
             }
         }
         elseif($_GET['action']=='findUser')
         {
-            findUser($_POST['mot']);
+            GererUser::findUser($_POST['mot']);
         }
         //Connexion de l'utilisateur
         elseif($_GET['action']== 'connexion')
         {
             
-            $resultat = connexionVerify($_POST['login'],$_POST['pass']);
-            
+           $resultat = GererUser::connexionVerify($_POST['login'],$_POST['pass']);
+           //Tester::echoFonction();          
         }
         //Deconnexion
         elseif($_GET['action'] == 'deconnexion')

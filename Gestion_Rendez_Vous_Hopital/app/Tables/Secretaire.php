@@ -1,4 +1,5 @@
 <?php
+namespace App\Tables;
 class Secretaire
 {
     private $_id_secretaire;

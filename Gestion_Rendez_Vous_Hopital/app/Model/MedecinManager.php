@@ -1,9 +1,13 @@
 <?php
+namespace App\Model;
+use App\Tables\Medecin;
+use \PDO;
+
 class MedecinManager extends Medecin
 {
     private $_db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->_db = $db;
     }
@@ -37,16 +41,15 @@ class MedecinManager extends Medecin
         $requete->bindValue(':prenom', $medecin->prenom());
         $requete->bindValue(':num_telephone', $medecin->num_telephone());
         $requete->bindValue(':email', $medecin->email());
-        $requete->bindValue(':id_service', $medecin->id_service());
-        $requete->bindValue(':id', $medecin->id_medecin());
-        
+        $requete->bindValue(':id_service', $medecin->id_service(),PDO::PARAM_INT);
+        $requete->bindValue(':id', $medecin->id_medecin(),PDO::PARAM_INT);
         return $requete->execute();
     }
 
     public function listes()
     {
-        $requete = $this->_db->prepare('SELECT m.id_medecin,m.nom AS nom_medecin,prenom,num_telephone,email,s.nom AS nom_service,m.id_service
-        FROM medecin m,specialite s WHERE m.id_service = s.id_specialite');
+        $requete = $this->_db->prepare('SELECT m.id_medecin,m.nom AS nom_medecin,prenom,num_telephone,email,d.nom_specialite AS nom_service,m.id_service
+        FROM medecin m,domaine d WHERE m.id_service = d.id_domaine');
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -60,8 +63,8 @@ class MedecinManager extends Medecin
     }
     public function findMedecin($chaine)
     {
-        $requete = $this->_db->prepare('SELECT m.id_medecin,m.nom AS nom_medecin,prenom,num_telephone,email,s.nom AS nom_service,m.id_service
-        FROM medecin m,specialite s WHERE m.id_service = s.id_specialite AND m.nom LIKE :chaine OR prenom LIKE :chaine');
+        $requete = $this->_db->prepare('SELECT m.id_medecin,m.nom AS nom_medecin,prenom,num_telephone,email,d.nom_specialite AS nom_service,m.id_service
+        FROM medecin m,domaine d WHERE (m.id_service = d.id_domaine) AND (m.nom LIKE :chaine OR prenom LIKE :chaine)');
         $requete->bindValue(':chaine',  $chaine);
         $requete->bindValue(':chaine',  $chaine);
         $requete->execute();

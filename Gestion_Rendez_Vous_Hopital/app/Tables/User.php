@@ -1,4 +1,5 @@
 <?php
+namespace App\Tables;
 class User
 {
     private $_id_user;

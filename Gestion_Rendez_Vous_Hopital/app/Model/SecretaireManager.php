@@ -1,5 +1,9 @@
 <?php
-class SecrecretaireManager extends Secretaire
+namespace App\Model;
+use \PDO;
+use App\Tables\Secretaire;
+
+class SecretaireManager extends Secretaire
 {
     protected $_db;
     public function __construct(PDO $db)

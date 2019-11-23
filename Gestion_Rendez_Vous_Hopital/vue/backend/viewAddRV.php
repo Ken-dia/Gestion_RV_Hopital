@@ -10,6 +10,12 @@ require_once('lib/roleSecretaire.php');
             <div class="card-header bg-color">Ajouter Rendez-vous </div>
             <div class="card-body">
                 <form class="formulaire" action="index.php?action=addRV" method="POST" class="needs-validation" novalidate>
+                <div class="form-group">
+                
+                <label for="id_patient">Id Patient</label><input type="text" id="id_patient" class="form-control" readOnly></br> 
+                <label for="patient">N° Tel Patient</label><input type="text" id="num_tel" class="form-control" onKeyUp="tel_suggestion()"> 
+                    <span id="suggestion"></span>
+                </div>
                     <div class="form-group">
                         <label for="date_RV">Date RV</label>
                         <input type="date" name="date_RV" id="date_RV" placeholder="Votre Réponse" class="form-control" >
@@ -19,22 +25,6 @@ require_once('lib/roleSecretaire.php');
                         <label for="heure_RV">Heure RV</label>
                         <input type="time" name="heure_RV" id="heure_RV" placeholder="Votre Réponse" class="form-control">
                         <div class="error-message"></div>
-                    </div>
-                    <div class="form-group">
-                    <label for="patient">Nom Patient</label>
-                    <select name="patient" class="form-control">
-                        <?php
-                        foreach($listesPatient as $patient)
-                        {
-                        ?>
-                            <option name="patient" value="<?=$patient['id_patient']?>">
-                                <?=$patient['prenom'].' '.$patient['nom']?>
-                            </option>
-                        <?php
-                        }
-                        ?>
-
-                    </select>
                     </div>
                     <div class="form-group">
                         <label for="medecin">Nom Medecin</label>
@@ -53,14 +43,14 @@ require_once('lib/roleSecretaire.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="secretaire"> Nom Secretaire</label>
+                        <label for="secretaire"> Nom Service</label>
                         <select name="secretaire" class="form-control">
                             <?php
-                            foreach($listesSecretaire as $secretaire)
+                            foreach($listesService as $service)
                             {
                             ?>
-                                <option name="secretaire" value="<?=$secretaire['id_secretaire']?>">
-                                    <?=$secretaire['prenom'].' '.$secretaire['nom']?>
+                                <option name="service" value="<?=$service['id_specialite']?>">
+                                    <?=$service['nom']?>
                                 </option>
                             <?php
                             }
@@ -75,5 +65,6 @@ require_once('lib/roleSecretaire.php');
             </div>
         </div>
 </div>
+<script src="lib/ajax.js"></script>
 <?php $content = ob_get_clean();?>
 <?php require('template.php'); ?>

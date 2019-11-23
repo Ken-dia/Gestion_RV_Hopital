@@ -44,7 +44,7 @@ function afficherTableSecretaire(array $listesSecretaire)
 }
 function afficherTableMedecin(array $listeMedecin)
 {
-  echo  '<th>Nom</th><th>Prenom</th><th>N° Telephone</th><th>Email</th><th>Nom Service</th><th colspan ="2">Actions</th>';
+  echo  '<th>Nom</th><th>Prenom</th><th>N° Telephone</th><th>Email</th><th>Spécialité</th><th colspan ="2">Actions</th>';
     foreach($listeMedecin as $medecin)
     {
         echo '<tr>';
@@ -60,9 +60,20 @@ function afficherTableServices($listesService)
     foreach($listesService as $service)
     {
         echo '<tr>';
-            echo '<td>'.$service['nom'].'</td><td>'.$service['nom_secretaire'].'</td><td>'.$service['prenom_secretaire'].'</td>';
+            echo '<td>'.$service['nom'].'</td><td>'.$service['prenom_secretaire'].'</td><td>'.$service['nom_secretaire'].'</td>';
             echo '<td><a href="index.php?action=deleteService&amp;id='.$service['id_specialite'].'"><i class="fa fa-trash-o fa-1x" aria-hidden="true"></a></td>';
             echo '<td><a href="index.php?action=serviceUpdate&amp;id='.$service['id_specialite'].'"><i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i></a></td>';
+        echo '</tr>';
+    }
+}
+function afficherTableSpecialite($listesSpecialite)
+{
+    foreach($listesSpecialite as $specialite)
+    {
+        echo '<tr>';
+            echo '<td>'.$specialite['nom_specialite'].'</td><td>'.$specialite['nom'].'</td>';
+            echo '<td><a href="index.php?action=deleteSpecialite&amp;id='.$specialite['id_domaine'].'"><i class="fa fa-trash-o fa-1x" aria-hidden="true"></a></td>';
+            echo '<td><a href="index.php?action=specialiteUpdate&amp;id='.$specialite['id_domaine'].'"><i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i></a></td>';
         echo '</tr>';
     }
 }

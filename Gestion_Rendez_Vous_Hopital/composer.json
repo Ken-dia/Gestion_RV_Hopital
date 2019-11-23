@@ -1,0 +1,16 @@
+{
+    "name": "ken_dia/gestion_rv",
+    "description": "Systéme de gestion de rendez-vous pour un hpoital",
+    "authors": [
+        {
+            "name": "ken-dia",
+            "email": "diahamidou10@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\" : "app/"
+        }
+    },
+    "require": {}
+}

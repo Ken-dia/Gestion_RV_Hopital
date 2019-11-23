@@ -1,4 +1,9 @@
 <?php
+namespace App\Model;
+
+use App\Tables\Service;
+use \PDO;
+
 class ServiceManager extends Service
 {
     protected $_db;

@@ -1,8 +1,11 @@
 <?php
+namespace App\Model;
+use App\Tables\User;
+use \PDO;
 class UserManager extends User
 {
     protected $_db;
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->_db=$db;
     }
