@@ -1,58 +1,44 @@
-/*function numTelPatientSuggestion()
-{
-    var tel = document.getElementById('tel');
-    var xhr;
-    if(window.XMLHttpRequest)
-    {
-        xhr = new XMLHttpRequest();
-    }
-    else if ( window.ActiveXObject)
-    {
-        xhr = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    var data = "numTel" + tel;
-        xhr.open("POST","TelPatient.php",true);
-        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        xhr.send(data);
-        xhr.onreadystatechange = display_data;
-    function display_data()
-    {
-        if (xhr.readyState == 4)
-        {
-            if(xhr.status == 200)
-            {
-                document.getElementById("suggestion").innerHTML = xhr.responseText;
-            }
-            else
-            {
-                alert("Erreur avec la requete!!!")
-            }
-        }
-    }
-}
-*/
 function tel_suggestion()
 {
-var tel = document.getElementById("num_tel").value;
-var xhr;
- if (window.XMLHttpRequest) { // Mozilla, Safari, ...
-    xhr = new XMLHttpRequest();
-} else if (window.ActiveXObject) { // IE 8 and older
-    xhr = new ActiveXObject("Microsoft.XMLHTTP");
-}
-var data = "tel_name=" + tel;
+    var tel = document.getElementById("num_tel").value;
+    var xhr;
+    if (window.XMLHttpRequest)
+     { // Mozilla, Safari, ...
+        xhr = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject)
+    { // IE 8 and older
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    var data = "tel_name=" + tel;
      xhr.open("POST", "lib/TelPatient.php", true); 
      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                  
      xhr.send(data);
 	 xhr.onreadystatechange = display_data;
-	function display_data() {
-	 if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-       //alert(xhr.responseText);	   
-	  document.getElementById("suggestion").innerHTML = xhr.responseText;
-      } else {
-        alert('There was a problem with the request.');
-      }
+    function display_data()
+    {
+     if (xhr.readyState == 4) 
+     {
+        if (xhr.status == 200)
+        {
+            //alert(xhr.responseText);	
+            var mon_bloc =document.getElementById("suggestion")   
+            mon_bloc.innerHTML = xhr.responseText;
+            //Mon style
+            mon_bloc.style.backgroundColor = "#7451EB"
+            mon_bloc.style.color = "#F1F1F1";
+            mon_bloc.style.height = "70px";
+            mon_bloc.style.overflow = "auto";
+            //
+            //mes_liens = document.getElementsByName("lien")
+            //mes_liens.style.color = "#F1F1F1";
+            //mes_liens.style.textDecoration = "none";
+            console.log(mon_bloc.style)
+        } 
+        else 
+        {
+            alert('Il y a un probléme sur la requete.');
+        }
      }
     }
     if(num_tel.value.length != 9)
@@ -79,6 +65,7 @@ var data = "tel_name=" + tel;
             {
                 document.getElementById("num_tel").value = e.target.textContent;
                 document.getElementById("id_patient").value = e.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
+                mes_liens.innerHTML="";
             }
         }
         e.preventDefault();

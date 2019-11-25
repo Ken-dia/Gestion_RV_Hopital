@@ -32,7 +32,7 @@
     foreach($result as $row)
     {
     echo '<p><a href="#" class="lien">'.$row['num_telephone'].'</a>
-    <span> : '.$row['nom'].' '.$row['prenom'].'</span>
+    <span> => '.$row['prenom'].' '.$row['nom'].'</span>
     <span hidden>' .$row['id_patient'] .'</span></p>';
     }
     ?>

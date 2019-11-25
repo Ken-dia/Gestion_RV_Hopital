@@ -14,7 +14,7 @@ require_once('lib/roleSecretaire.php');
                 
                 <label for="id_patient">Id Patient</label><input type="text" id="id_patient" class="form-control" readOnly></br> 
                 <label for="patient">N° Tel Patient</label><input type="text" id="num_tel" class="form-control" onKeyUp="tel_suggestion()"> 
-                    <span id="suggestion"></span>
+                    <div id="suggestion"></div>
                 </div>
                     <div class="form-group">
                         <label for="date_RV">Date RV</label>
