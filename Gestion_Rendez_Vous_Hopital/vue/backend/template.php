@@ -35,17 +35,19 @@
                             <a class="nav-link" href="index.php?action=listesMedecin">Medecins</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=listesServices">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=listesSpecialite">Specialités</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="index.php?action=listesRV">Rendez-vous</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=listesUser">Utilisateur</a>
-                        </li>      
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Administration
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="admin_menu">
+                        <a class="dropdown-item" href="index.php?action=listesServices">Services</a>
+                        <a class="dropdown-item" href="index.php?action=listesSpecialite" >Spécialités</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="index.php?action=listesUser">Utilisateurs</a>
+                        </div>
+      </li>      
                     </ul>
                 </div> 
                 <div class="pull-right">

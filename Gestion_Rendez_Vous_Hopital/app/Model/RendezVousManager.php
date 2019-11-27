@@ -35,10 +35,12 @@ class RendezVousManager extends RendezVous
     }
     public function listes()
     {
-        $requete= $this->_db->query("SELECT r.id_RV,Date_FORMAT(r.date_RV,'%d/%m/%Y') AS date_RV,r.heure_RV,p.prenom AS prenom_patient,p.nom AS nom_patient,
-        m.prenom AS prenom_medecin,m.nom AS nom_medecin,s.prenom AS prenom_secretaire,s.nom AS nom_secretaire
-        FROM rendez_vous r,patient p,secretaire s,medecin m WHERE r.id_patient = p.id_patient AND r.id_medecin = m.id_medecin
-        AND r.id_secretaire = s.id_secretaire");
+        $requete= $this->_db->query("SELECT r.id_RV,Date_FORMAT(r.date_RV,'%d/%m/%Y') AS date_RV,r.heure_RV,
+        p.prenom AS prenom_patient,p.nom AS nom_patient,
+        m.prenom AS prenom_medecin,m.nom AS nom_medecin,s.nom
+        FROM rendez_vous r,patient p,specialite s,medecin m WHERE r.id_patient = p.id_patient
+        AND r.id_medecin = m.id_medecin
+        AND r.id_secretaire = s.id_specialite");
         $requete->execute();
         return $requete->fetchAll(\PDO::FETCH_ASSOC);
     }

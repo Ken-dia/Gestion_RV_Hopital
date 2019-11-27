@@ -178,8 +178,26 @@
             }
             else
             {
-                $('#heure_RV').next('error-message').fadeOut();
+                $('#heure_RV').next('.error-message').fadeOut();
             }
+        }
+        if($('#num_tel').val() == "")
+        {
+            $('#num_tel').next('.error-message').fadeIn().text('Veuillez selectionner un N° de telephone').addClass('invalid-feedback');
+            resultat = false;
+        }
+        else
+        {
+            if($('#num_tel').lenght != 9)
+            {
+                $('#num_tel').next('.error-message').fadeIn().text('N° de telephone incorrete').addClass('invalid-feedback');
+                resultat = false;
+            }
+            else
+            {
+                $('#num_tel').next('.error-message').fadeOut();
+            }
+
         }
         //SERVICE
         return resultat;

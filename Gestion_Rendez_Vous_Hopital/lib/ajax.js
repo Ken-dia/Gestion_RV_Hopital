@@ -27,7 +27,7 @@ function tel_suggestion()
             //Mon style
             mon_bloc.style.backgroundColor = "#7451EB"
             mon_bloc.style.color = "#F1F1F1";
-            mon_bloc.style.height = "70px";
+            mon_bloc.style.maxHeight = "70px";
             mon_bloc.style.overflow = "auto";
             //
             //mes_liens = document.getElementsByName("lien")
@@ -59,6 +59,7 @@ function tel_suggestion()
                 
                 document.getElementById("id_patient").value = e.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
                 mes_liens.innerHTML="";
+                mes_liens.style.height = "0px";
                 
             }
             else
@@ -66,6 +67,7 @@ function tel_suggestion()
                 document.getElementById("num_tel").value = e.target.textContent;
                 document.getElementById("id_patient").value = e.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
                 mes_liens.innerHTML="";
+
             }
         }
         e.preventDefault();

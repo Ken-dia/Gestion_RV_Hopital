@@ -289,13 +289,14 @@ try
                 $RV = new RendezVous([
                     'date_RV'=>$_POST['date_RV'],
                     'heure_RV'=>$_POST['heure_RV'],
-                    'id_patient'=> (int)$_POST['patient'],
+                    'id_patient'=> (int)$_POST['id_patient'],
                     'id_medecin'=>(int)$_POST['medecin'],
-                    'id_secretaire'=>(int)$_POST['secretaire']
+                    'id_secretaire'=>(int)$_POST['service']
                 ]);
 
                 if($_GET['action'] == 'addRV')
                 {
+                    //var_dump($RV);die;
                     ControllerRV::addRV($RV);
                 }
                 else

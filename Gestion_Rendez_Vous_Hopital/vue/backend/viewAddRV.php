@@ -12,9 +12,12 @@ require_once('lib/roleSecretaire.php');
                 <form class="formulaire" action="index.php?action=addRV" method="POST" class="needs-validation" novalidate>
                 <div class="form-group">
                 
-                <label for="id_patient">Id Patient</label><input type="text" id="id_patient" class="form-control" readOnly></br> 
-                <label for="patient">N° Tel Patient</label><input type="text" id="num_tel" class="form-control" onKeyUp="tel_suggestion()"> 
-                    <div id="suggestion"></div>
+                <label for="id_patient">Id Patient</label>
+                <input type="text" id="id_patient" name="id_patient" class="form-control" readOnly></br> 
+                <label for="patient">N° Tel Patient</label>
+                <input type="text" id="num_tel" class="form-control" onKeyUp="tel_suggestion()"> 
+                <div class="error-message"></div>
+                <div id="suggestion"></div>
                 </div>
                     <div class="form-group">
                         <label for="date_RV">Date RV</label>
@@ -43,8 +46,8 @@ require_once('lib/roleSecretaire.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="secretaire"> Nom Service</label>
-                        <select name="secretaire" class="form-control">
+                        <label for="service"> Nom Service</label>
+                        <select name="service" class="form-control">
                             <?php
                             foreach($listesService as $service)
                             {

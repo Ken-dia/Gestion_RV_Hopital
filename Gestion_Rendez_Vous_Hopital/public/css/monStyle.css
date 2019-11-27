@@ -72,7 +72,13 @@ a:hover
 {
     text-decoration: none;
 }
-a.lien
+a.lien,#admin_menu a
 {
     color:#F1F1F1;
+    font-weight: 700;
+}
+#admin_menu
+{
+    background-color: #7451EB;
+    
 }
